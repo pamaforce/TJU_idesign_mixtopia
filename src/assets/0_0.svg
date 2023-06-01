@@ -1,0 +1,8 @@
+<svg width="32" height="40" viewBox="0 0 32 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g style="mix-blend-mode:difference" opacity="0.64">
+        <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M16 36C24.8366 36 32 28.8366 32 20C32 11.1634 24.8366 4 16 4C7.16344 4 0 11.1634 0 20C0 28.8366 7.16344 36 16 36ZM16 35C24.2843 35 31 28.2843 31 20C31 11.7157 24.2843 5 16 5C7.71573 5 1 11.7157 1 20C1 28.2843 7.71573 35 16 35Z"
+            fill="#838383" />
+        <circle cx="16" cy="20" r="4" fill="#838383" />
+    </g>
+</svg>

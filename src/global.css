@@ -1,0 +1,67 @@
+@font-face {
+    font-family: "LXGW 975 HazyGo SC";
+    src: url('./assets/font/Lxgw975HazyGoSC-400W.ttf');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "LXGW 975 HazyGo SC";
+    src: url('./assets/font/Lxgw975HazyGoSC-600W.ttf');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: "LXGW 975 HazyGo SC";
+    src: url('./assets/font/Lxgw975HazyGoSC-200W.ttf');
+    font-weight: 200;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    overflow-y: auto;
+    font-family: 'LXGW 975 HazyGo SC';
+}
+
+iframe {
+    width: 1067px;
+    height: 600px;
+}
+
+html {
+    overflow-y: auto !important;
+}
+
+p {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    cursor: pointer;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.25);
+    transition: color 0.2s ease;
+}
+
+.noSelect {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
