@@ -5,7 +5,7 @@
       <div class="g-teacher">
         <div class="card">
           <img
-            src="../assets/sponsor/0/5.jpeg"
+            src="../assets/sponsor/0/x.jpeg"
             class="card-img"
             alt="avatar"
             preview="1"

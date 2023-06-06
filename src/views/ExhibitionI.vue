@@ -138,7 +138,7 @@
       class="dialog"
       @touchmove.prevent
       @mousewheel.prevent
-      @click="() => (dialog = false)"
+      @click="cancelDialog"
       v-if="dialog"
       v-html="tempItem.url"
     ></div>
@@ -170,6 +170,13 @@ export default {
     },
   },
   methods: {
+    cancelDialog() {
+      this.dialog = false;
+      this.subRefresh = false;
+      this.$nextTick(() => {
+        this.subRefresh = true;
+      });
+    },
     toDetail(item, i) {
       if (item.id < 0) {
         this.tempItem = item;
@@ -688,21 +695,25 @@ export default {
     },
     distributeList() {
       if (this.tempList.length) {
-        let heightLeft = document.getElementById("leftFall").clientHeight;
-        let heightRight = document.getElementById("rightFall").clientHeight;
-        if (heightLeft <= heightRight) {
-          this.leftList.push(this.tempList.shift());
-        } else {
-          this.rightList.push(this.tempList.shift());
-        }
-        this.$nextTick(() => {
-          this.distributeList();
-        });
+        setTimeout(() => {
+          let heightLeft = document.getElementById("leftFall").clientHeight;
+          let heightRight = document.getElementById("rightFall").clientHeight;
+          if (heightLeft <= heightRight) {
+            this.leftList.push(this.tempList.shift());
+          } else {
+            this.rightList.push(this.tempList.shift());
+          }
+          this.$nextTick(() => {
+            this.distributeList();
+          });
+        }, 0);
       } else {
-        this.subRefresh = false;
-        this.$nextTick(() => {
-          this.subRefresh = true;
-        });
+        setTimeout(() => {
+          this.subRefresh = false;
+          this.$nextTick(() => {
+            this.subRefresh = true;
+          });
+        }, 0);
       }
     },
     changeLang() {
