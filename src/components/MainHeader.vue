@@ -51,7 +51,7 @@
           class="search"
           alt="search"
           @dragstart.prevent
-          @click="toHome"
+          @click="toRoute('/search')"
         />
       </template>
       <template v-else>

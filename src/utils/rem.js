@@ -12,9 +12,17 @@ function setRem() {
     }
 
 }
+export function getRootFontSize() {
+    // 获取HTML的DOM元素
+    const htmlDom = document.getElementsByTagName('html')[0];
+    // 获取根元素的字体大小，并解析为数字
+    const fontSizeString = window.getComputedStyle(htmlDom).fontSize;
+    // 将fontSizeString（如 "16px"）转换为纯数字
+    return parseFloat(fontSizeString);
+}
 // 初始化
 setRem();
 // 改变窗口大小时重新设置 rem
-window.onresize = function() {
+window.onresize = function () {
     setRem()
 }

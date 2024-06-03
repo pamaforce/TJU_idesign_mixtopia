@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <MainHeader :notMobile="notMobile" />
+    <MainHeader :notMobile="notMobile" v-if="$route.path !== '/search'" />
     <keep-alive>
       <router-view :notMobile="notMobile"></router-view>
     </keep-alive>
