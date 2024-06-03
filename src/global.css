@@ -1,18 +1,18 @@
 @font-face {
     font-family: "LXGW 975 HazyGo SC";
-    src: url('./assets/font/Lxgw975HazyGoSC-400W.ttf');
+    src: url('./assets/font/Lxgw975HazyGoSC-400W.woff');
     font-weight: 400;
 }
 
 @font-face {
     font-family: "LXGW 975 HazyGo SC";
-    src: url('./assets/font/Lxgw975HazyGoSC-600W.ttf');
+    src: url('./assets/font/Lxgw975HazyGoSC-600W.woff');
     font-weight: 700;
 }
 
 @font-face {
     font-family: "LXGW 975 HazyGo SC";
-    src: url('./assets/font/Lxgw975HazyGoSC-200W.ttf');
+    src: url('./assets/font/Lxgw975HazyGoSC-200W.woff');
     font-weight: 200;
 }
 
