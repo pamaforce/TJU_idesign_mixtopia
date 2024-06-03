@@ -70,6 +70,14 @@
           @click="goBack"
           v-if="$route.path !== '/'"
         />
+        <img
+          src="../assets/search.svg"
+          class="m-icon-search"
+          alt="search"
+          @dragstart.prevent
+          @click="toRoute('/search')"
+          v-else
+        />
       </template>
     </div>
   </div>
@@ -569,6 +577,12 @@ export default {
 .m-icon-back {
   width: 15.5px;
   height: 13.5px;
+  cursor: pointer;
+  margin-right: 32.5px;
+}
+.m-icon-search {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
   margin-right: 32.5px;
 }
