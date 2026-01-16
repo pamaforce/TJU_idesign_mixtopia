@@ -5,7 +5,7 @@
       <div class="g-teacher">
         <div class="card">
           <img
-            src="../assets/sponsor/0/x.jpeg"
+            src="../assets/sponsor/0/x.webp"
             class="card-img"
             alt="avatar"
             preview="1"
@@ -23,7 +23,7 @@
         </div>
         <div class="card">
           <img
-            src="../assets/sponsor/0/4.jpeg"
+            src="../assets/sponsor/0/4.webp"
             class="card-img"
             alt="avatar"
             preview="2"
@@ -46,7 +46,7 @@
           <div class="card" v-for="(item, j) in num[letter]" :key="i + ' ' + j">
             <img
               :src="
-                require('../assets/student/' + letter + '/' + (j + 1) + '.jpeg')
+                require('../assets/student/' + letter + '/' + (j + 1) + '.webp')
               "
               class="card-img"
               alt="avatar"
@@ -94,7 +94,7 @@
           >
             <img
               :src="
-                require('../assets/student/' + letter + '/' + (j + 1) + '.jpeg')
+                require('../assets/student/' + letter + '/' + (j + 1) + '.webp')
               "
               class="m-card-img"
               alt="avatar"
@@ -755,7 +755,7 @@ export default {
   position: relative;
 }
 .pc-graduate {
-  background-image: url("../assets/g2.png");
+  background-image: url("../assets/g2.webp");
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -768,7 +768,7 @@ export default {
 }
 .m-graduate {
   padding-top: 50px;
-  background-image: url("../assets/mobile/bi.png");
+  background-image: url("../assets/mobile/bi.webp");
   background-size: 100%;
   background-attachment: fixed;
   background-position: 0 0;
@@ -790,7 +790,7 @@ export default {
   width: 700px;
   box-sizing: border-box;
   padding: 24px;
-  background-image: url("../assets/g3.png");
+  background-image: url("../assets/g3.webp");
   background-size: 100% 100%;
   display: flex;
 }
@@ -798,7 +798,7 @@ export default {
   width: 360px;
   padding: 12px;
   box-sizing: border-box;
-  background-image: url("../assets/g3.png");
+  background-image: url("../assets/g3.webp");
   background-size: 100% 100%;
   display: flex;
   margin-bottom: 9px;
@@ -1058,11 +1058,11 @@ export default {
   transform: translate(-50%, -50%);
   width: 414px;
   height: 577px;
-  background-image: url("../assets/mobile/graduate.png");
+  background-image: url("../assets/mobile/graduate.webp");
   background-size: 414px 577px;
 }
 .msg-en-img {
-  background-image: url("../assets/mobile/graduate-en.png");
+  background-image: url("../assets/mobile/graduate-en.webp");
 }
 .msg-btn {
   position: absolute;

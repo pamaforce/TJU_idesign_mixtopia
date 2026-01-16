@@ -2,7 +2,7 @@
   <div class="wrapper" ref="wrapper">
     <div class="home" ref="main">
       <div class="preface" :style="{ transform: 'translateY(' + top + 'px)' }">
-        <img src="../assets/preface.png" @drag.prevent alt="background" />
+        <img src="../assets/preface.webp" @drag.prevent alt="background" />
       </div>
       <div
         class="b1"
@@ -14,7 +14,7 @@
         <ul id="scene">
           <li class="layer" data-depth="0.8">
             <img
-              :src="require('../assets/b' + preActive + '.png')"
+              :src="require('../assets/b' + preActive + '.webp')"
               class="back-img"
             />
           </li>
@@ -30,20 +30,30 @@
           'vh;mask-image: url(' +
           require('../assets/mask_' +
             (activeItem === 0 ? 1 : activeItem === 8 ? 7 : activeItem) +
-            '.png') +
+            '.webp') +
           ');-webkit-mask-image: url(' +
           require('../assets/mask_' +
             (activeItem === 0 ? 1 : activeItem === 8 ? 7 : activeItem) +
-            '.png') +
+            '.webp') +
           ');'
         "
         v-if="!hideAll"
-      ></div>
+      >
+        <!-- 使用预模糊图片的视差层 -->
+        <ul id="scene-blur">
+          <li class="layer" data-depth="0.8">
+            <img
+              :src="require('../assets/b' + (activeItem === 0 ? 1 : activeItem === 8 ? 7 : activeItem) + '_blur.webp')"
+              class="back-img"
+            />
+          </li>
+        </ul>
+      </div>
       <img
         :src="
           require('../assets/svg_' +
             (activeItem === 0 ? 1 : activeItem === 8 ? 7 : activeItem) +
-            '.png')
+            '.webp')
         "
         class="f1-img"
         v-if="!hideAll"
@@ -236,12 +246,12 @@
           >
             <img
               class="fm-cover"
-              :src="item.src"
+              v-lazy="item.src"
               alt="cover"
               :title="lang === 'en' ? item.post_title_en : item.title"
             />
             <img
-              :src="require('../assets/' + preActive2 + '_4.png')"
+              :src="require('../assets/' + preActive2 + '_4.webp')"
               :class="
                 'fm-wave' +
                 (showItem !== -1 && showDetail.id === item.id
@@ -296,7 +306,7 @@
         <ul id="scene2">
           <li class="layer" data-depth="-0.7">
             <img
-              src="../assets/cloud_1.png"
+              src="../assets/cloud_1.webp"
               :class="
                 'bm-img-cloud-1' + (showItem !== -1 ? ' active-cloud-1' : '')
               "
@@ -304,7 +314,7 @@
           </li>
           <li class="layer" data-depth="0.2">
             <img
-              :src="require('../assets/' + preActive2 + '_3.png')"
+              :src="require('../assets/' + preActive2 + '_3.webp')"
               :class="
                 'bm-img-building' + (showItem !== -1 ? ' active-building' : '')
               "
@@ -312,7 +322,7 @@
           </li>
           <li class="layer" data-depth="-0.3">
             <img
-              src="../assets/cloud_2.png"
+              src="../assets/cloud_2.webp"
               :class="
                 'bm-img-cloud-2' + (showItem !== -1 ? ' active-cloud-2' : '')
               "
@@ -320,7 +330,7 @@
           </li>
           <li class="layer" data-depth="-0.8">
             <img
-              src="../assets/cloud_3.png"
+              src="../assets/cloud_3.webp"
               :class="
                 'bm-img-cloud-3' + (showItem !== -1 ? ' active-cloud-3' : '')
               "
@@ -397,6 +407,7 @@
 <script>
 import Parallax from "parallax-js";
 import service from "../utils/request";
+import { UPLOAD_URL } from "../utils/constants.js";
 export default {
   name: "Exhibition",
   props: ["notMobile"],
@@ -702,7 +713,7 @@ export default {
             ...data.data.data[i],
             title: data.data.data[i].post_title,
             src:
-              "http://idesign.tju.edu.cn/upload/" +
+              UPLOAD_URL +
               data.data.data[i].more.thumbnail,
             authors: y,
             authors_en: x,
@@ -714,11 +725,24 @@ export default {
     },
   },
   watch: {
+    // 当 .f1 元素重新显示时，重新初始化预模糊背景的视差效果
+    hideAll(newVal) {
+      if (!newVal) {
+        this.$nextTick(() => {
+          let sceneBlur = document.getElementById("scene-blur");
+          if (sceneBlur) {
+            new Parallax(sceneBlur, {
+              relativeInput: true,
+            });
+          }
+        });
+      }
+    },
     queryItem(val) {
       if (val === 4) {
         this.cardList = [
           {
-            src: require("../assets/cover/1.jpeg"),
+            src: require("../assets/cover/1.webp"),
             title: "《THE ROAD》",
             post_title_en: "《THE ROAD》",
             id: -2,
@@ -735,7 +759,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=271696227&bvid=BV1rc411G7Fr&cid=1146932793&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/2.jpeg"),
+            src: require("../assets/cover/2.webp"),
             title: "《PARADISE》",
             post_title_en: "《PARADISE》",
             id: -3,
@@ -750,7 +774,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=954204635&bvid=BV16W4y197oh&cid=1146952122&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/3.png"),
+            src: require("../assets/cover/3.webp"),
             title: "《Global mutation investigation report》",
             post_title_en: "《Global mutation investigation report》",
             id: -4,
@@ -767,7 +791,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=954183014&bvid=BV1fs4y1T7AJ&cid=1146940432&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/4.png"),
+            src: require("../assets/cover/4.webp"),
             title: "《莱莉的康复》",
             post_title_en: "《莱莉的康复》",
             id: -5,
@@ -784,7 +808,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=401655071&bvid=BV1Xo4y1T73Q&cid=1146925263&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/5.png"),
+            src: require("../assets/cover/5.webp"),
             title: "«“我”和奔向不同选择的“我”们»",
             post_title_en: "«“我”和奔向不同选择的“我”们»",
             id: -6,
@@ -801,7 +825,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/6.png"),
+            src: require("../assets/cover/6.webp"),
             title: "《心海》",
             post_title_en: "《心海》",
             id: -7,
@@ -818,7 +842,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=401723540&bvid=BV15o4y1M7NB&cid=1146949522&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/7.png"),
+            src: require("../assets/cover/7.webp"),
             title: "《寻海》",
             post_title_en: "《寻海》",
             id: -8,
@@ -835,7 +859,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/8.png"),
+            src: require("../assets/cover/8.webp"),
             title: "《Cloth Tiger》",
             post_title_en: "《Cloth Tiger》",
             id: -9,
@@ -852,7 +876,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/9.png"),
+            src: require("../assets/cover/9.webp"),
             title: "《空天地智能无人系统三维演示动画设计》",
             post_title_en: "《空天地智能无人系统三维演示动画设计》",
             id: -10,
@@ -869,7 +893,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=656741068&bvid=BV1Mh4y1d7W7&cid=1146946883&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/10.png"),
+            src: require("../assets/cover/10.webp"),
             title: "《流徙·欧罗巴》",
             post_title_en: "《流徙·欧罗巴》",
             id: -11,
@@ -904,7 +928,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/21.jpeg"),
+            src: require("../assets/cover/21.webp"),
             title: "探幽寻奇 出山入画",
             post_title_en: "探幽寻奇 出山入画",
             id: -21,
@@ -923,7 +947,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/22.jpeg"),
+            src: require("../assets/cover/22.webp"),
             title: "梦境回廊",
             post_title_en: "梦境回廊",
             id: -22,
@@ -942,7 +966,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/23.jpeg"),
+            src: require("../assets/cover/23.webp"),
             title: "游园惊梦·钗头凤",
             post_title_en: "游园惊梦·钗头凤",
             id: -23,
@@ -959,7 +983,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/24.jpeg"),
+            src: require("../assets/cover/24.webp"),
             title: "千千回·狮子林",
             post_title_en: "千千回·狮子林",
             id: -24,
@@ -976,7 +1000,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/25.jpeg"),
+            src: require("../assets/cover/25.webp"),
             title: "幽人居",
             post_title_en: "幽人居",
             id: -25,
@@ -993,7 +1017,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/26.jpeg"),
+            src: require("../assets/cover/26.webp"),
             title: "我们这十年——中国速度",
             post_title_en: "我们这十年——中国速度",
             id: -26,
@@ -1010,7 +1034,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/27.jpeg"),
+            src: require("../assets/cover/27.webp"),
             title: "我们这十年——人间烟火",
             post_title_en: "我们这十年——人间烟火",
             id: -27,
@@ -1027,7 +1051,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/28.jpeg"),
+            src: require("../assets/cover/28.webp"),
             title: "",
             post_title_en: "",
             id: -28,
@@ -1044,7 +1068,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/29.jpeg"),
+            src: require("../assets/cover/29.webp"),
             title: "我们这十年——Live and let live",
             post_title_en: "我们这十年——Live and let live",
             id: -29,
@@ -1061,7 +1085,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/30.jpeg"),
+            src: require("../assets/cover/30.webp"),
             title: "我们这十年——职业兴替",
             post_title_en: "我们这十年——职业兴替",
             id: -30,
@@ -1118,6 +1142,15 @@ export default {
     let parallaxInstance2 = new Parallax(scene2, {
       relativeInput: true,
     });
+    // 初始化预模糊背景的视差效果
+    this.$nextTick(() => {
+      let sceneBlur = document.getElementById("scene-blur");
+      if (sceneBlur) {
+        new Parallax(sceneBlur, {
+          relativeInput: true,
+        });
+      }
+    });
     console.log(parallaxInstance, parallaxInstance2);
     this.$bus.$on("clickState", (i) => {
       let toTop = Math.min(0, (1 - 2 * i) * window.innerHeight);
@@ -1128,12 +1161,61 @@ export default {
       });
     });
     this.getList(1);
+    // 使用 requestAnimationFrame 节流滚动事件，提升性能
+    let ticking = false;
+    let snapTimeout = null;
+    let lastScrollTop = 0;
+    const windowHeight = window.innerHeight;
+    
     window.addEventListener("scroll", () => {
-      let scrollTop =
-        document.documentElement.scrollTop ||
-        window.pageYOffset ||
-        document.body.scrollTop;
-      this.handleMouseWheel(-scrollTop);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          let scrollTop =
+            document.documentElement.scrollTop ||
+            window.pageYOffset ||
+            document.body.scrollTop;
+          this.handleMouseWheel(-scrollTop);
+          ticking = false;
+        });
+        ticking = true;
+      }
+      
+      // 滚动吸附：滚动停止后自动吸附到展厅位置
+      if (snapTimeout) clearTimeout(snapTimeout);
+      snapTimeout = setTimeout(() => {
+        let scrollTop =
+          document.documentElement.scrollTop ||
+          window.pageYOffset ||
+          document.body.scrollTop;
+        
+        // 每屏吸附一次（100vh）
+        const sectionHeight = windowHeight;
+        const scrollDirection = scrollTop - lastScrollTop;
+        
+        // 根据滚动方向决定吸附位置
+        let currentSection;
+        if (scrollDirection > 0) {
+          // 向下滚动：吸附到下一屏（只需滚动超过 1% 即可）
+          currentSection = Math.ceil(scrollTop / sectionHeight - 0.01);
+        } else if (scrollDirection < 0) {
+          // 向上滚动：吸附到上一屏（只需滚动超过 1% 即可）
+          currentSection = Math.floor(scrollTop / sectionHeight + 0.01);
+        } else {
+          // 没有滚动方向，吸附到最近的
+          currentSection = Math.round(scrollTop / sectionHeight);
+        }
+        
+        const targetScroll = currentSection * sectionHeight;
+        lastScrollTop = targetScroll;
+        
+        // 只在需要吸附时滚动（避免无限循环）
+        if (Math.abs(scrollTop - targetScroll) > 10) {
+          window.scrollTo({
+            top: targetScroll,
+            behavior: "smooth",
+          });
+        }
+      }, 400); // 400ms 防抖，允许用户连续滚动
     });
   },
 };
@@ -1153,6 +1235,10 @@ export default {
   position: absolute;
   width: 100%;
   height: 100vh;
+  will-change: transform;
+  /* 浏览器自动优化：视口外元素跳过渲染 */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 100vh;
 }
 .preface img {
   width: 100%;
@@ -1168,11 +1254,15 @@ export default {
   justify-content: center;
   font-size: 50px;
   font-weight: 700;
-  background-image: url("../assets/glass.png");
+  background-image: url("../assets/glass.webp");
   background-size: auto 100%;
   background-attachment: fixed;
   background-repeat: no-repeat;
   overflow: hidden;
+  will-change: transform;
+  /* 浏览器自动优化：视口外元素跳过渲染 */
+  content-visibility: auto;
+  contain-intrinsic-size: 0 170vh;
 }
 .epilogue-content {
   width: 840px;
@@ -1243,6 +1333,7 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  will-change: transform;
 }
 .b2 {
   position: absolute;
@@ -1256,10 +1347,11 @@ export default {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background: url("../assets/back_main.png");
+  background: url("../assets/back_main.webp");
   background-size: 100%;
   background-repeat: no-repeat;
   filter: blur(15px);
+  will-change: transform;
 }
 #scene,
 .layer {
@@ -1281,8 +1373,9 @@ export default {
   -webkit-mask-position-y: -90px;
   mask-repeat: no-repeat;
   -webkit-mask-repeat: no-repeat;
-  backdrop-filter: blur(30px);
+  /* 移除 backdrop-filter: blur(30px)，改用预模糊图片方案提升性能 */
   overflow: hidden;
+  will-change: transform;
 }
 .fm {
   position: absolute;
@@ -1291,6 +1384,7 @@ export default {
   display: flex;
   align-items: center;
   z-index: 80;
+  will-change: transform;
 }
 .fm-space,
 .epilogue-space {
@@ -1344,6 +1438,7 @@ export default {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   white-space: unset;
@@ -1417,6 +1512,7 @@ export default {
   position: absolute;
   top: -90px;
   width: 100%;
+  will-change: transform, opacity;
 }
 .f1-text {
   position: absolute;
@@ -1605,6 +1701,7 @@ export default {
 .f1-intro {
   display: -webkit-box;
   -webkit-line-clamp: 6;
+  line-clamp: 6;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

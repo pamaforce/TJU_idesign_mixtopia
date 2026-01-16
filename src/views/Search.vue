@@ -112,6 +112,7 @@
 import { debounce } from '../utils/debounce';
 import service from '../utils/request';
 import { getRootFontSize } from '../utils/rem';
+import { UPLOAD_URL } from '../utils/constants.js';
 
 export default {
     data() {
@@ -124,7 +125,7 @@ export default {
             resultList: [],
             recommendList: [],
             recentSearches: JSON.parse(localStorage.getItem('recentSearches') || '[]'),
-            portalUrl: "http://idesign.tju.edu.cn/upload/",
+            portalUrl: UPLOAD_URL,
         };
     },
     props: {
@@ -194,7 +195,7 @@ export default {
         async getRecommend() {
             this.recommendList = [];
             try {
-                const response = await service(`http://idesign.tju.edu.cn/portal/api_v1/get_keywords_by_key?cate_ids=58,59,60,61,62,63,64`);
+                const response = await service(`/portal/api_v1/get_keywords_by_key?cate_ids=58,59,60,61,62,63,64`);
                 const newData = response.data;
                 this.recommendList = newData;
             } catch (error) {
@@ -607,6 +608,7 @@ export default {
         display: -webkit-box;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 2;
+        line-clamp: 2;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: unset;

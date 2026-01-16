@@ -2,7 +2,7 @@
   <div :class="'exhibition bg' + ($route.params.category_id || 64)">
     <img
       :src="
-        require('../assets/banner' + ($route.params.category_id || 64) + '.png')
+        require('../assets/banner' + ($route.params.category_id || 64) + '.webp')
       "
       alt="back-img"
       class="mobile-back"
@@ -146,6 +146,7 @@
 </template>
 <script>
 import service from "../utils/request";
+import { UPLOAD_URL } from "../utils/constants.js";
 export default {
   props: ["notMobile"],
   data() {
@@ -249,7 +250,7 @@ export default {
       if (this.$route.params.category_id === "61") {
         this.cardList = [
           {
-            src: require("../assets/cover/1.jpeg"),
+            src: require("../assets/cover/1.webp"),
             title: "《THE ROAD》",
             post_title_en: "《THE ROAD》",
             id: -2,
@@ -266,7 +267,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=271696227&bvid=BV1rc411G7Fr&cid=1146932793&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/2.jpeg"),
+            src: require("../assets/cover/2.webp"),
             title: "《PARADISE》",
             post_title_en: "《PARADISE》",
             id: -3,
@@ -281,7 +282,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=954204635&bvid=BV16W4y197oh&cid=1146952122&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/3.png"),
+            src: require("../assets/cover/3.webp"),
             title: "《Global mutation investigation report》",
             post_title_en: "《Global mutation investigation report》",
             id: -4,
@@ -298,7 +299,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=954183014&bvid=BV1fs4y1T7AJ&cid=1146940432&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/4.png"),
+            src: require("../assets/cover/4.webp"),
             title: "《莱莉的康复》",
             post_title_en: "《莱莉的康复》",
             id: -5,
@@ -315,7 +316,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=401655071&bvid=BV1Xo4y1T73Q&cid=1146925263&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/5.png"),
+            src: require("../assets/cover/5.webp"),
             title: "«“我”和奔向不同选择的“我”们»",
             post_title_en: "«“我”和奔向不同选择的“我”们»",
             id: -6,
@@ -332,7 +333,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/6.png"),
+            src: require("../assets/cover/6.webp"),
             title: "《心海》",
             post_title_en: "《心海》",
             id: -7,
@@ -349,7 +350,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=401723540&bvid=BV15o4y1M7NB&cid=1146949522&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/7.png"),
+            src: require("../assets/cover/7.webp"),
             title: "《寻海》",
             post_title_en: "《寻海》",
             id: -8,
@@ -366,7 +367,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/8.png"),
+            src: require("../assets/cover/8.webp"),
             title: "《Cloth Tiger》",
             post_title_en: "《Cloth Tiger》",
             id: -9,
@@ -383,7 +384,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/9.png"),
+            src: require("../assets/cover/9.webp"),
             title: "《空天地智能无人系统三维演示动画设计》",
             post_title_en: "《空天地智能无人系统三维演示动画设计》",
             id: -10,
@@ -400,7 +401,7 @@ export default {
             url: '<iframe src="//player.bilibili.com/player.html?aid=656741068&bvid=BV1Mh4y1d7W7&cid=1146946883&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>',
           },
           {
-            src: require("../assets/cover/10.png"),
+            src: require("../assets/cover/10.webp"),
             title: "《流徙·欧罗巴》",
             post_title_en: "《流徙·欧罗巴》",
             id: -11,
@@ -446,7 +447,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/21.jpeg"),
+            src: require("../assets/cover/21.webp"),
             title: "探幽寻奇 出山入画",
             post_title_en: "探幽寻奇 出山入画",
             id: -21,
@@ -465,7 +466,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/22.jpeg"),
+            src: require("../assets/cover/22.webp"),
             title: "梦境回廊",
             post_title_en: "梦境回廊",
             id: -22,
@@ -484,7 +485,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/23.jpeg"),
+            src: require("../assets/cover/23.webp"),
             title: "游园惊梦·钗头凤",
             post_title_en: "游园惊梦·钗头凤",
             id: -23,
@@ -501,7 +502,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/24.jpeg"),
+            src: require("../assets/cover/24.webp"),
             title: "千千回·狮子林",
             post_title_en: "千千回·狮子林",
             id: -24,
@@ -518,7 +519,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/25.jpeg"),
+            src: require("../assets/cover/25.webp"),
             title: "幽人居",
             post_title_en: "幽人居",
             id: -25,
@@ -535,7 +536,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/26.jpeg"),
+            src: require("../assets/cover/26.webp"),
             title: "我们这十年——中国速度",
             post_title_en: "我们这十年——中国速度",
             id: -26,
@@ -552,7 +553,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/27.jpeg"),
+            src: require("../assets/cover/27.webp"),
             title: "我们这十年——人间烟火",
             post_title_en: "我们这十年——人间烟火",
             id: -27,
@@ -569,7 +570,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/28.jpeg"),
+            src: require("../assets/cover/28.webp"),
             title: "",
             post_title_en: "",
             id: -28,
@@ -586,7 +587,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/29.jpeg"),
+            src: require("../assets/cover/29.webp"),
             title: "我们这十年——Live and let live",
             post_title_en: "我们这十年——Live and let live",
             id: -29,
@@ -603,7 +604,7 @@ export default {
             url: "",
           },
           {
-            src: require("../assets/cover/30.jpeg"),
+            src: require("../assets/cover/30.webp"),
             title: "我们这十年——职业兴替",
             post_title_en: "我们这十年——职业兴替",
             id: -30,
@@ -671,7 +672,7 @@ export default {
               ...data.data.data[i],
               title: data.data.data[i].post_title,
               src:
-                "http://idesign.tju.edu.cn/upload/" +
+                UPLOAD_URL +
                 data.data.data[i].more.thumbnail,
               authors: y,
               authors_en: x,
@@ -1120,7 +1121,7 @@ export default {
   height: auto;
 }
 .mobile-works {
-  background: url("../assets/g5.png");
+  background: url("../assets/g5.webp");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   margin: 8px 0;

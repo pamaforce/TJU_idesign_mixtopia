@@ -76,7 +76,7 @@
         <img
           class="card-cover"
           :src="
-            'http://idesign.tju.edu.cn/upload/' +
+            UPLOAD_URL +
             worksList[current].more.thumbnail
           "
           alt="cover"
@@ -102,9 +102,11 @@
 
 <script>
 import service from "../utils/request.js";
+import { UPLOAD_URL } from "../utils/constants.js";
 export default {
   data() {
     return {
+      UPLOAD_URL, // 暴露给模板使用
       array: [],
       arrayColor: [],
       moveHandlers: [],
@@ -514,6 +516,7 @@ export default {
   overflow: hidden;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
   white-space: unset;

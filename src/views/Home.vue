@@ -282,7 +282,7 @@
           <div class="specialGird-4">邮编 / 300354</div>
         </div>
         <img
-          src="../assets/qrcode.png"
+          src="../assets/qrcode.webp"
           class="QR-code noSelect"
           alt="QRCode"
           v-show="qrHover"
@@ -390,7 +390,7 @@
             Math.min(cardState ? 0 : 12.5, scrollProgress / 4 - 12.5) + 'rem',
         }"
       >
-        <img src="../assets/g4.png" class="m-glass-img" />
+        <img src="../assets/g4.webp" class="m-glass-img" />
         <img
           src="../assets/intro-m.svg"
           class="m-intro-img"

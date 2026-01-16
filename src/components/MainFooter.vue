@@ -65,7 +65,7 @@
       <div class="specialGird-4">邮编 / 300354</div>
     </div>
     <img
-      src="../assets/qrcode.png"
+      src="../assets/qrcode.webp"
       class="QR-code noSelect"
       alt="QRCode"
       v-show="qrHover"

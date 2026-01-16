@@ -15,7 +15,7 @@
       <div class="s-group">
         <div class="card" v-for="i in 12" :key="i">
           <img
-            :src="require('../assets/sponsor/0/' + i + '.jpeg')"
+            :src="require('../assets/sponsor/0/' + i + '.webp')"
             class="card-img"
             alt="avatar"
             preview="1"
@@ -36,7 +36,7 @@
             :key="i + ' ' + j"
           >
             <img
-              :src="require('../assets/sponsor/' + i + '/' + (j + 1) + '.jpeg')"
+              :src="require('../assets/sponsor/' + i + '/' + (j + 1) + '.webp')"
               class="card-img"
               alt="avatar"
               preview="1"
@@ -76,7 +76,7 @@
           >
             <img
               v-lazy="
-                require('../assets/sponsor/' + i + '/' + (j + 1) + '.jpeg')
+                require('../assets/sponsor/' + i + '/' + (j + 1) + '.webp')
               "
               @dragstart.prevent
               alt="avatar"
@@ -726,7 +726,7 @@ export default {
   position: relative;
 }
 .pc-graduate {
-  background-image: url("../assets/g2.png");
+  background-image: url("../assets/g2.webp");
   background-size: 100%;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -739,7 +739,7 @@ export default {
 }
 .m-graduate {
   padding-top: 50px;
-  background-image: url("../assets/mobile/bi.png");
+  background-image: url("../assets/mobile/bi.webp");
   background-size: 100%;
   background-attachment: fixed;
   background-position: 0 0;
@@ -765,7 +765,7 @@ export default {
   width: 320px;
   box-sizing: border-box;
   padding: 24px;
-  background-image: url("../assets/g1.png");
+  background-image: url("../assets/g1.webp");
   background-size: 100% 100%;
   display: flex;
   flex-direction: column;
@@ -985,11 +985,11 @@ export default {
   transform: translate(-50%, -50%);
   width: 414px;
   height: 561px;
-  background-image: url("../assets/mobile/sponsor.png");
+  background-image: url("../assets/mobile/sponsor.webp");
   background-size: 414px 561px;
 }
 .msg-en-img {
-  background-image: url("../assets/mobile/sponsor-en.png");
+  background-image: url("../assets/mobile/sponsor-en.webp");
 }
 .msg-btn {
   position: absolute;
@@ -1038,7 +1038,7 @@ export default {
   height: 102px;
   margin: 3px 0;
   padding: 10px;
-  background-image: url("../assets/g6.png");
+  background-image: url("../assets/g6.webp");
   background-size: 100% 100%;
   display: grid;
   grid-template-columns: 82px auto;
